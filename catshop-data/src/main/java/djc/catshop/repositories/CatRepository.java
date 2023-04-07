@@ -1,6 +1,6 @@
 package djc.catshop.repositories;
 
-import djc.catshop.models.Cat;
+import djc.catshop.data.Cat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
