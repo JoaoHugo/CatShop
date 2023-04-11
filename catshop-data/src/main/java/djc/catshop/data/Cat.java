@@ -2,12 +2,10 @@ package djc.catshop.data;
 
 import djc.catshop.enums.CatBreeds;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "cats")
 public class Cat {
 
     @Id
