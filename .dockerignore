@@ -1,0 +1,10 @@
+# Ignore files and directories commonly generated during development
+.git
+gradle/
+build/
+.vscode/
+.idea/
+
+# Ignore Dockerfile and .dockerignore files
+Dockerfile
+.dockerignore

@@ -1,0 +1,31 @@
+version: "3"
+services:
+  catshop-micro:
+    build:
+      context: .
+    ports:
+      - "${CATSHOP_PORT}:8090"
+    environment:
+      - SPRING_DATASOURCE_URL=${MYSQL_URL}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: always
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - ${MYSQL_PORT}:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=catshop=${MYSQL_DATABASE}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    restart: always
+    volumes:
+      - catshop-micro-mysql:/var/lib/mysql
+
+volumes:
+  catshop-micro-mysql:
