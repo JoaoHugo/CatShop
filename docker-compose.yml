@@ -1,6 +1,11 @@
 version: "3"
 services:
-  catshop-micro:
+  # consul:
+  #   image: consul:1.15.2
+  #   ports:
+  #     - "8500:8500"
+
+  catshop-service:
     build:
       context: .
     ports:
@@ -18,14 +23,14 @@ services:
       - ${MYSQL_PORT}:3306
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=catshop=${MYSQL_DATABASE}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
     restart: always
     volumes:
-      - catshop-micro-mysql:/var/lib/mysql
+      - catshop-mysql:/var/lib/mysql
 
 volumes:
-  catshop-micro-mysql:
+  catshop-mysql:
