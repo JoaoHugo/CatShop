@@ -1,4 +1,5 @@
 # Ignore files and directories commonly generated during development
+**/target/
 .git
 gradle/
 build/
